@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-     git 'https://github.com/Rituraj12345/my-app-1'
+     git 'https://github.com/Rituraj12345/Tomcat'
    }
    stage('Compile-Package'){
       // Get maven home path
@@ -10,14 +10,8 @@ node{
    stage('Deploy to Tomcat one'){
       
       sshagent(['tomcat-dev']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.37.158:/usr/local/tomcat9/webapps/'
+         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.37.151:/usr/local/tomcat9/webapps/'
       }
    }
-   stage('Email Notification'){
-      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
-      Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: ''
-   }
-
-
+   
 }
